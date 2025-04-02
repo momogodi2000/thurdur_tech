@@ -1,0 +1,1 @@
+# thurdur_tech
