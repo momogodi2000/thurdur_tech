@@ -4,7 +4,7 @@ I'll create a comprehensive README file for your Thunder Technology application 
 
 # Thunder Technology Web Application
 
-![Thunder Technology Logo](./public/assets/img/logo.png)
+![Thunder Technology Logo](./public/assets/images/logo/Thunderbolts.png)
 
 ## Overview
 
