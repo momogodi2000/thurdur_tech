@@ -335,12 +335,11 @@ const Services = () => {
 
   // Partners logos (placeholder data)
   const partners = [
-    { name: "Ministry of Health", logo: "/api/placeholder/120/80" },
-    { name: "African Medical Association", logo: "/api/placeholder/120/80" },
-    { name: "University of Yaoundé", logo: "/api/placeholder/120/80" },
-    { name: "National Hospital", logo: "/api/placeholder/120/80" },
-    { name: "Health Tech Africa", logo: "/api/placeholder/120/80" },
-    { name: "Medical Innovation Fund", logo: "/api/placeholder/120/80" }
+    { name: "Ministry of Health", logo: "/assets/images/Ministry of Health.jpeg" },
+    { name: "African Medical Association", logo: "/assets/images/1.png" },
+    { name: "IAI Cameroun", logo: "/assets/images/iai.jpeg" },
+    { name: "Health Tech Africa", logo: "/assets/images/3.jpeg" },
+    { name: "Medical Innovation Fund", logo: "/assets/images/2.png" }
   ];
 
   // Function to filter services by category
@@ -691,7 +690,7 @@ const Services = () => {
               Contact us to discuss how our innovative solutions can address your healthcare challenges and improve patient outcomes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="bg-white text-blue-800 hover:bg-blue-50 transition duration-300 font-semibold rounded-lg px-8 py-4 text-lg">
+              <Link to="#" className="bg-white text-blue-800 hover:bg-blue-50 transition duration-300 font-semibold rounded-lg px-8 py-4 text-lg">
                 Request Consultation
               </Link>
               <Link to="/event" className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-800 transition duration-300 text-white font-semibold rounded-lg px-8 py-4 text-lg">

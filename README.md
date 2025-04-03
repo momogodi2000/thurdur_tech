@@ -5,7 +5,7 @@ I'll create a comprehensive README file for your Thunder Technology application 
 # Thunder Technology Web Application
 
 ![Thunder Technology Logo](./public/assets/images/logo/Thunderbolts.png)
-
+![alt text](thurder/public/assets/logo/Thunderbolts.png)
 ## Overview
 
 Thunder Technology is a healthcare technology startup specializing in innovative solutions to improve healthcare access. This application serves dual purposes:

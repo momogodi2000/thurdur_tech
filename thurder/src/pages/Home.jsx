@@ -278,7 +278,7 @@ const Home = () => {
             >
               <div className="relative rounded-lg overflow-hidden shadow-2xl">
                 <img 
-                  src="/api/placeholder/600/400" 
+                  src="/assets/logo/Thunderbolts.png" 
                   alt="Healthcare Technology" 
                   className="w-full h-auto rounded-lg"
                 />
@@ -346,13 +346,16 @@ const Home = () => {
                     <span>Pitch competition with funding opportunities</span>
                   </li>
                 </ul>
-                <Link to="/event/registration" className="inline-block bg-blue-600 hover:bg-blue-700 transition duration-300 text-white font-semibold rounded-lg px-6 py-3">
-                  Register Now
-                </Link>
+                  <Link 
+                    to="/event#register" 
+                    className="inline-block bg-blue-600 hover:bg-blue-700 transition duration-300 text-white font-semibold rounded-lg px-6 py-3"
+                  >
+                    Register Now
+                  </Link>
               </div>
               <div className="md:w-1/2">
                 <img 
-                  src="/api/placeholder/600/500" 
+                  src="/assets/logo/LOGO DHIH CAMEROUN Plan de travail 1.png" 
                   alt="Digital Healthcare Innovation Hub" 
                   className="w-full h-full object-cover"
                 />
@@ -428,8 +431,8 @@ const Home = () => {
               >
                 <div className="h-56 bg-blue-100">
                   <img 
-                    src={`/api/placeholder/400/${300 + member.id * 10}`} 
-                    alt={member.name} 
+                  src="/assets/avarta/avarta1 (1).png" 
+                  alt={member.name} 
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -494,19 +497,19 @@ const Home = () => {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="p-4">
-              <div className="text-4xl font-bold mb-2">3+</div>
+              <div className="text-4xl font-bold mb-2">2</div>
               <div className="text-blue-200">Years Experience</div>
             </div>
             <div className="p-4">
-              <div className="text-4xl font-bold mb-2">20+</div>
+              <div className="text-4xl font-bold mb-2">8+</div>
               <div className="text-blue-200">Projects Completed</div>
             </div>
             <div className="p-4">
-              <div className="text-4xl font-bold mb-2">12+</div>
+              <div className="text-4xl font-bold mb-2">5+</div>
               <div className="text-blue-200">Healthcare Partners</div>
             </div>
             <div className="p-4">
-              <div className="text-4xl font-bold mb-2">5000+</div>
+              <div className="text-4xl font-bold mb-2">100+</div>
               <div className="text-blue-200">Patients Served</div>
             </div>
           </div>

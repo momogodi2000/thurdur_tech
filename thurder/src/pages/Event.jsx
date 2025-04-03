@@ -27,6 +27,15 @@ const Event = () => {
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const [activeTab, setActiveTab] = useState('upcoming');
 
+
+  useEffect(() => {
+    if (window.location.hash === '#register') {
+      setShowRegistrationModal(true);
+      // Remove the hash from URL
+      window.history.pushState(null, null, ' ');
+    }
+  }, []);
+
   useEffect(() => {
     setIsVisible(true);
     window.scrollTo(0, 0);
@@ -182,7 +191,7 @@ const Event = () => {
       title: "Healthcare Digitalization Conference",
       date: "May 10-11, 2024",
       location: "Yaoundé, Cameroon",
-      image: "/api/placeholder/600/400",
+      image: "/assets/avarta/avarta1 (1).png",
       description: "A two-day conference focused on healthcare digitalization strategies and implementation challenges in Central Africa. The event brought together healthcare administrators, technology providers, and policy makers.",
       stats: {
         participants: 215,
@@ -214,7 +223,7 @@ const Event = () => {
       title: "Medical Technology Workshop Series",
       date: "October 5-7, 2024",
       location: "Douala, Cameroon",
-      image: "/api/placeholder/600/400",
+      image: "/assets/images/3.jpeg",
       description: "A series of hands-on workshops designed to help healthcare professionals adopt and effectively use new medical technologies in their practice. The workshops covered telehealth systems, electronic medical records, and diagnostic technologies.",
       stats: {
         participants: 150,
@@ -381,7 +390,7 @@ const Event = () => {
                 </div>
                 <div className="relative rounded-xl overflow-hidden shadow-2xl">
                   <img 
-                    src="/api/placeholder/600/400" 
+                    src="/assets/logo/LOGO DHIH CAMEROUN Plan de travail 1.png" 
                     alt="Healthcare Innovation Hub" 
                     className="w-full h-auto rounded-xl"
                   />
@@ -510,7 +519,7 @@ const Event = () => {
                   <div key={index} className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <div className="h-48 bg-blue-100">
                       <img 
-                        src={`/api/placeholder/400/${300 + index * 10}`} 
+                        src="/assets/avarta/avarta1 (1).png" 
                         alt={speaker.name} 
                         className="w-full h-full object-cover"
                       />
