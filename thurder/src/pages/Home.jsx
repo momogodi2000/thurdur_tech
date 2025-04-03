@@ -2,19 +2,33 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaArrowRight, FaCalendarAlt, FaUsers, FaLaptopMedical, FaVrCardboard, FaMapMarkerAlt, FaPhone, FaEnvelope,
-     FaFacebook, FaTwitter, FaLinkedin, FaInstagram,FaCheck
+     FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaCheck
 } from 'react-icons/fa';
 import Footer from '../components/common/Footer';
 import Button from '../components/common/Button'; // Adjust the path as needed
-
+import ContactService from '../services/ContactServices';
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showPolicy, setShowPolicy] = useState(false);
   const [policyType, setPolicyType] = useState('terms'); // 'terms', 'privacy', or 'partnership'
+  
+  // Contact form state
+  const [contactForm, setContactForm] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [contactErrors, setContactErrors] = useState({});
+  const [contactSuccess, setContactSuccess] = useState(false);
+  const [contactLoading, setContactLoading] = useState(false);
+  
+  // Newsletter state
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [subscribing, setSubscribing] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
@@ -54,12 +68,14 @@ const Home = () => {
     return re.test(String(email).toLowerCase());
   };
 
+  // Handle newsletter email change
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     if (emailError) setEmailError('');
   };
 
-  const handleSubscribe = (e) => {
+  // Handle newsletter subscription
+  const handleSubscribe = async (e) => {
     e.preventDefault();
     
     if (!email) {
@@ -72,11 +88,89 @@ const Home = () => {
       return;
     }
     
-    // Simulate subscription process
-    setTimeout(() => {
-      setSubscribed(true);
-      setEmail('');
-    }, 1000);
+    try {
+      setSubscribing(true);
+      
+      // Call the backend service to subscribe
+      const response = await ContactService.subscribeToNewsletter(email);
+      
+      if (response.success) {
+        setSubscribed(true);
+        setEmail('');
+      } else {
+        setEmailError(response.message || 'Failed to subscribe. Please try again.');
+      }
+    } catch (error) {
+      setEmailError(error.message || 'Error subscribing to newsletter');
+      console.error('Newsletter subscription error:', error);
+    } finally {
+      setSubscribing(false);
+    }
+  };
+
+  // Handle contact form input changes
+  const handleContactChange = (e) => {
+    const { name, value } = e.target;
+    setContactForm(prev => ({ ...prev, [name]: value }));
+    
+    // Clear error when user types
+    if (contactErrors[name]) {
+      setContactErrors(prev => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  // Validate contact form
+  const validateContactForm = () => {
+    const errors = {};
+    
+    if (!contactForm.name.trim()) errors.name = 'Name is required';
+    if (!contactForm.email.trim()) {
+      errors.email = 'Email is required';
+    } else if (!validateEmail(contactForm.email)) {
+      errors.email = 'Please enter a valid email address';
+    }
+    if (!contactForm.subject.trim()) errors.subject = 'Subject is required';
+    if (!contactForm.message.trim()) errors.message = 'Message is required';
+    
+    setContactErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  // Handle contact form submission
+  const handleContactSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!validateContactForm()) return;
+    
+    try {
+      setContactLoading(true);
+      
+      // Call the backend service to send contact message
+      const response = await ContactService.sendContactMessage(contactForm);
+      
+      if (response.success) {
+        setContactSuccess(true);
+        // Reset form after successful submission
+        setContactForm({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          setContactSuccess(false);
+        }, 5000);
+      } else {
+        setContactErrors({ form: response.message || 'Failed to send message. Please try again.' });
+      }
+    } catch (error) {
+      setContactErrors({ form: error.message || 'Error sending message' });
+      console.error('Contact form submission error:', error);
+    } finally {
+      setContactLoading(false);
+    }
   };
 
   // Services data
